@@ -1,0 +1,199 @@
+{
+  "generated": "Fri, 19 Dec 3049 14:45:01",
+    "1": {
+        "name": "Terra",
+        "position": {
+            "x": "0",
+            "y": "0"
+        },
+        "owner": {
+            "id": "1",
+            "name": "Piranha Games",
+            "icon": "https://static.mwomercs.com/img/house/piranha.png"
+        },
+        "invading": {
+            "id": "0",
+            "name": "None",
+            "icon": ""
+        },
+        "contested": "0",
+        "defense_level": "0",
+        "total_territories": "11",
+        "territories": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+        ],
+        "unit": {
+            "id": "0",
+            "name": ""
+        },
+        "rules": {
+            "min_tonnage": "140",
+            "max_tonnage": "240",
+            "dropship": "1"
+        }
+    },
+    "2": {
+        "name": "New Earth",
+        "position": {
+            "x": "-13",
+            "y": "3"
+        },
+        "owner": {
+            "id": "10",
+            "name": "Steiner",
+            "icon": "https://static.mwomercs.com/img/house/steiner.png"
+        },
+        "invading": {
+            "id": "5",
+            "name": "Davion",
+            "icon": "https://static.mwomercs.com/img/house/davion.png"
+        },
+        "contested": "1",
+        "defense_level": "0",
+        "total_territories": "11",
+        "territories": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+        ],
+        "unit": {
+            "id": "176",
+            "name": "SRoT"
+        },
+        "rules": {
+            "min_tonnage": "140",
+            "max_tonnage": "240",
+            "dropship": "1"
+        }
+    },
+    "3": {
+        "name": "Rigil Kentarus",
+        "position": {
+            "x": "-3",
+            "y": "3"
+        },
+        "owner": {
+            "id": "5",
+            "name": "Davion",
+            "icon": "https://static.mwomercs.com/img/house/davion.png"
+        },
+        "invading": {
+            "id": "0",
+            "name": "None",
+            "icon": ""
+        },
+        "contested": "0",
+        "defense_level": "0",
+        "total_territories": "11",
+        "territories": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+        ],
+        "unit": {
+            "id": "93",
+            "name": "ARMD"
+        },
+        "rules": {
+            "min_tonnage": "140",
+            "max_tonnage": "240",
+            "dropship": "1"
+        }
+    },
+    "4": {
+        "name": "Pike IV",
+        "position": {
+            "x": "20",
+            "y": "40"
+        },
+        "owner": {
+            "id": "6",
+            "name": "Kurita",
+            "icon": "https://static.mwomercs.com/img/house/kurita.png"
+        },
+        "invading": {
+            "id": "0",
+            "name": "None",
+            "icon": ""
+        },
+        "contested": "0",
+        "defense_level": "0",
+        "total_territories": "11",
+        "territories": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+        ],
+        "unit": {
+            "id": "0",
+            "name": ""
+        },
+        "rules": {
+            "min_tonnage": "140",
+            "max_tonnage": "240",
+            "dropship": "1"
+        }
+    },
+    "5": {
+        "name": "Rochelle",
+        "position": {
+            "x": "-115",
+            "y": "-16"
+        },
+        "owner": {
+            "id": "8",
+            "name": "Marik",
+            "icon": "https://static.mwomercs.com/img/house/marik.png"
+        },
+        "invading": {
+            "id": "0",
+            "name": "None",
+            "icon": ""
+        },
+        "contested": "0",
+        "defense_level": "0",
+        "total_territories": "11",
+        "territories": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+        ],
+        "unit": {
+            "id": "361",
+            "name": "BTD"
+        },
+        "rules": {
+            "min_tonnage": "140",
+            "max_tonnage": "240",
+            "dropship": "1"
+        }
+    }
+}
+

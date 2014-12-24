@@ -53,6 +53,20 @@ $ ->
         data[prop].position.y = +data[prop].position.y
         console.log data[prop].position.y
 
+    # NOTE : Not included in the original algo
+    # Convert obeject into array
+    old_data = data
+    data = []
+    for own prop of old_data
+      # console.log prop
+      if (old_data.hasOwnProperty(prop))
+        d = {}
+        d.position = {}
+        d.position.x = old_data[prop].position.x
+        d.position.y = old_data[prop].position.y
+        data.push(d)
+
+    console.log data
     x.domain(d3.extent(data, (d) ->
       d.position.x
     )).nice()

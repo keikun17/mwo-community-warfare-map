@@ -29,6 +29,21 @@ $ ->
 
     data
 
+    # Get the offset
+    lowest_x = 0
+    lowest_y = 0
+    for own prop of data
+      if (data.hasOwnProperty(prop))
+        x_data = +data[prop].position.x
+        if x_data < 0
+          if x_data < lowest_x
+            lowest_x = x_data
+
+        y_data = +data[prop].position.y
+        if y_data < 0
+          if y_data < lowest_y
+            lowest_y = y_data
+
     # Convert string data to int
     for own prop of data
       console.log prop

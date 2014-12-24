@@ -20,37 +20,18 @@ $ ->
   xAxis = d3.svg.axis().scale(x).orient("bottom")
   yAxis = d3.svg.axis().scale(y).orient("left")
   svg = d3.select("body").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-  d3.json "javascripts/smalldata.json", (error, data) ->
+  d3.json "javascripts/mapdata.json", (error, data) ->
     delete data.generated;
-    console.log "data is"
-    console.log data
-
-    window.data = data
-
-    data
-
-    # Get the offset
-    lowest_x = 0
-    lowest_y = 0
-    for own prop of data
-      if (data.hasOwnProperty(prop))
-        x_data = +data[prop].position.x
-        if x_data < 0
-          if x_data < lowest_x
-            lowest_x = x_data
-
-        y_data = +data[prop].position.y
-        if y_data < 0
-          if y_data < lowest_y
-            lowest_y = y_data
+    window._mapdata = data
 
     # Convert string data to int
     for own prop of data
-      console.log prop
+      # console.log prop
       if (data.hasOwnProperty(prop))
-        data[prop].position.x = +data[prop].position.x + lowest_x
+        console.log('')
+        data[prop].position.x = +data[prop].position.x 
         # console.log data[prop].position.x
-        data[prop].position.y = +data[prop].position.y + lowest_y
+        data[prop].position.y = +data[prop].position.y 
         # console.log data[prop].position.y
 
     # NOTE : Not included in the original algo

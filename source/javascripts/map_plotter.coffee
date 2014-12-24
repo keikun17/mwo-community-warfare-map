@@ -34,7 +34,9 @@ $ ->
       console.log prop
       if (data.hasOwnProperty(prop))
         data[prop].position.x = +data[prop].position.x
+        console.log data[prop].position.x
         data[prop].position.y = +data[prop].position.y
+        console.log data[prop].position.y
 
     x.domain(d3.extent(data, (d) ->
       d.position.x
@@ -44,4 +46,19 @@ $ ->
       d.position.y
     )).nice()
 
+    svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text "X"
+    svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text "Y"
+    svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", 3.5).attr("cx", (d) ->
+      x d.sepalWidth
+    ).attr("cy", (d) ->
+      y d.sepalLength
+    ).style "fill", (d) ->
+      color d.species
 
+    legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->
+      "translate(0," + i * 20 + ")"
+    )
+
+    legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style "fill", color
+    legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text (d) ->
+      d

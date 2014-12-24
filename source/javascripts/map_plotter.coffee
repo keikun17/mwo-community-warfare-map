@@ -48,10 +48,10 @@ $ ->
     for own prop of data
       console.log prop
       if (data.hasOwnProperty(prop))
-        data[prop].position.x = +data[prop].position.x
-        console.log data[prop].position.x
-        data[prop].position.y = +data[prop].position.y
-        console.log data[prop].position.y
+        data[prop].position.x = +data[prop].position.x + lowest_x
+        # console.log data[prop].position.x
+        data[prop].position.y = +data[prop].position.y + lowest_y
+        # console.log data[prop].position.y
 
     # NOTE : Not included in the original algo
     # Convert obeject into array
@@ -78,9 +78,10 @@ $ ->
     svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text "X"
     svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text "Y"
     svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", 3.5).attr("cx", (d) ->
-      x d.sepalWidth
+      console.log d
+      x d.position.x
     ).attr("cy", (d) ->
-      y d.sepalLength
+      y d.position.y
     ).style "fill", (d) ->
       color d.species
 

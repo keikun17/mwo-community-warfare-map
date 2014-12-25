@@ -34,9 +34,11 @@ $ ->
         data[prop].owner_id = +data[prop].owner.id
 
     # NOTE : Not included in the original algo
-    # Convert obeject into array
+    # 1. Convert obeject into array
+    # 2. populate owners table
     old_data = data
     data = []
+    owners = []
     for own prop of old_data
       # console.log prop
       if (old_data.hasOwnProperty(prop))
@@ -44,7 +46,13 @@ $ ->
         d.position = {}
         d.position.x = old_data[prop].position.x
         d.position.y = old_data[prop].position.y
+        d.owner_id = old_data[prop].owner.id
+        d.owner_name = old_data[prop].owner.id
+        owners.push({id: d.owner_id, name: d.owner_name})
+
         data.push(d)
+
+    window.owners = owners
 
     console.log data
     x.domain(d3.extent(data, (d) ->

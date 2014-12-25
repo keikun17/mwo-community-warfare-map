@@ -25,6 +25,7 @@ $ ->
       d.sepalWidth = +d.sepalWidth
       return
 
+    console.log data
     x.domain(d3.extent(data, (d) ->
       d.sepalWidth
     )).nice()

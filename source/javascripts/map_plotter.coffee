@@ -29,10 +29,9 @@ $ ->
       # console.log prop
       if (data.hasOwnProperty(prop))
         console.log('')
-        data[prop].position.x = +data[prop].position.x 
-        # console.log data[prop].position.x
-        data[prop].position.y = +data[prop].position.y 
-        # console.log data[prop].position.y
+        data[prop].position.x = +data[prop].position.x
+        data[prop].position.y = +data[prop].position.y
+        data[prop].owner_id = +data[prop].owner.id
 
     # NOTE : Not included in the original algo
     # Convert obeject into array
@@ -64,7 +63,7 @@ $ ->
     ).attr("cy", (d) ->
       y d.position.y
     ).style "fill", (d) ->
-      color d.species
+      color d.owner_id
 
     legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->
       "translate(0," + i * 20 + ")"

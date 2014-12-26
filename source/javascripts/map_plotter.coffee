@@ -73,6 +73,18 @@ $ ->
     ).style "fill", (d) ->
       color d.owner_id
 
+
+    svg.selectAll("text").data(data).enter().append("text").attr("x", (d) ->
+      console.log d
+      x d.position.x
+    ).attr("y", (d) ->
+      y d.position.y
+    ).style("fill", (d) ->
+      color d.owner_id
+    ).text( (d) ->
+      d.owner_name
+    )
+
     legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->
       "translate(0," + i * 20 + ")"
     )

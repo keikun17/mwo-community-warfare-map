@@ -48,6 +48,7 @@ $ ->
         d.position.y = old_data[prop].position.y
         d.owner_id = old_data[prop].owner.id
         d.owner_name = old_data[prop].owner.name
+        d.name = old_data[prop].name
         owners.push({id: d.owner_id, name: d.owner_name})
 
         data.push(d)
@@ -82,7 +83,7 @@ $ ->
     ).style("fill", (d) ->
       color d.owner_id
     ).text( (d) ->
-      d.owner_name
+      d.name
     )
 
     legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->

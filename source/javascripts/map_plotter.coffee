@@ -6,8 +6,8 @@ $ ->
     bottom: 30
     left: 40
 
-  width = 1000 - margin.left - margin.right
-  height = 1000 - margin.top - margin.bottom
+  width = 3000 - margin.left - margin.right
+  height = 3000 - margin.top - margin.bottom
   x = d3.scale.linear().range([
     0
     width

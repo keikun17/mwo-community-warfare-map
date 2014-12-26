@@ -47,7 +47,7 @@ $ ->
         d.position.x = old_data[prop].position.x
         d.position.y = old_data[prop].position.y
         d.owner_id = old_data[prop].owner.id
-        d.owner_name = old_data[prop].owner.id
+        d.owner_name = old_data[prop].owner.name
         owners.push({id: d.owner_id, name: d.owner_name})
 
         data.push(d)

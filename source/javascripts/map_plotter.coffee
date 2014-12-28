@@ -17,6 +17,22 @@ $ ->
     0
   ])
   color = d3.scale.category10()
+  window.color_mapping =
+    "Piranha Games": '#000000'
+    "Steiner": '#000099'
+    "Davion": '#ffff66'
+    "Kurita": '#cc0000'
+    "Marik": '#990099'
+    "None": '#000000'
+    "Liao": '#003300'
+    "Rasalhague": '#a0a0a0'
+    "Ghost Bear": '#c0c0c0'
+    "Jade Falcon": '#00ff00'
+    "Wolf": '#994c00'
+    "Smoke Jaguar": "#ffcc99"
+
+
+
   xAxis = d3.svg.axis().scale(x).orient("bottom")
   yAxis = d3.svg.axis().scale(y).orient("left")
   svg = d3.select("body").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -37,6 +53,9 @@ $ ->
     old_data = data
     data = []
     owners = []
+    owner_ids = []
+    owner_names = []
+
     for own prop of old_data
       if (old_data.hasOwnProperty(prop))
         d = {}
@@ -47,12 +66,14 @@ $ ->
         d.owner_name = old_data[prop].owner.name
         d.name = old_data[prop].name
         owners.push({id: d.owner_id, name: d.owner_name})
+        owner_ids.push(d.owner_id)
+        owner_names.push(d.owner_name)
 
         data.push(d)
 
-    window.owners = owners
+    window.owner_ids = $.unique(owner_ids)
+    window.owner_names = $.unique(owner_names)
 
-    console.log data
     x.domain(d3.extent(data, (d) ->
       d.position.x
     )).nice()
@@ -61,6 +82,7 @@ $ ->
       d.position.y
     )).nice()
 
+    # Planet dots
     svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text "X"
     svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text "Y"
     svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", 1.5).attr("cx", (d) ->
@@ -68,15 +90,15 @@ $ ->
     ).attr("cy", (d) ->
       y d.position.y
     ).style "fill", (d) ->
-      color d.owner_id
+      color_mapping[d.owner_name]
 
-
+    # Planet names
     svg.selectAll("text").data(data).enter().append("text").attr("x", (d) ->
       x d.position.x
     ).attr("y", (d) ->
       y d.position.y
     ).style("fill", (d) ->
-      color d.owner_id
+      color_mapping[d.owner_name]
     ).text( (d) ->
       d.name
     )

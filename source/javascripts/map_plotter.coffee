@@ -36,7 +36,7 @@ $ ->
   xAxis = d3.svg.axis().scale(x).orient("bottom")
   yAxis = d3.svg.axis().scale(y).orient("left")
   svg = d3.select("body").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-  d3.json "javascripts/mapdata.json", (error, data) ->
+  d3.json "https://static.mwomercs.com/data/cw/mapdata.json", (error, data) ->
     delete data.generated;
     window._mapdata = data
 

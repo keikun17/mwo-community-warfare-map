@@ -38,7 +38,8 @@
     transform = function(d) {
       return "translate(" + x(d.position.x) + "," + y(d.position.y) + ")";
     };
-    svg = d3.select("map").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")").call(zoomListener);
+    svg = d3.select("map").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")").call(zoomListener).append("g");
+    svg.append("rect").attr("class", "overlay").attr("width", width).attr("height", height);
     return d3.json("https://static.mwomercs.com/data/cw/mapdata.json", function(error, data) {
       var d, legend, old_data, owner_ids, owner_names, owners, prop;
       delete data.generated;

@@ -6744,3 +6744,8 @@ body {
 /* line 19, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
 .dot {
   stroke: #000; }
+
+/* line 22, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
+.overlay {
+  fill: none;
+  pointer-events: all; }

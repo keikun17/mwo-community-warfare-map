@@ -161,5 +161,5 @@ $ ->
     # svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text "Y"
 
     # Default zoom
-    zoomListener.translate([-width / 2, -height / 2]).scale(2);
+    zoomListener.translate([-width / 20,  -height / 20]).scale(1);
     zoomListener.event(svg.transition().duration(3000));

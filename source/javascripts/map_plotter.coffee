@@ -45,7 +45,7 @@ $ ->
   window.zoomListener = d3.behavior.zoom()
     .x(x)
     .y(y)
-    .scaleExtent([.1,30000])
+    .scaleExtent([.5,500])
     .on("zoom", zoomed)
 
   transform = (d) ->

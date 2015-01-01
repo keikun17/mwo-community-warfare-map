@@ -9,7 +9,8 @@
     = stylesheet_link_tag "normalize", "all"
     = javascript_include_tag  "all"
   %body
-    %h1 Something
-    %map{:class => page_classes, :style => 'border: 1px solid black'}
-    zoom all the way out to view the map. go on...
-    = yield
+    .container
+      .row-fluid
+        .col-lg-12
+          %h1 Current State of the Inner Sphere
+          = yield

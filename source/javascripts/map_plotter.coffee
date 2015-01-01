@@ -20,14 +20,14 @@ $ ->
   window.color_mapping =
     "Piranha Games": '#000000'
     "Steiner": '#000099'
-    "Davion": '#ffff66'
+    "Davion": '#ffcc00'
     "Kurita": '#cc0000'
     "Marik": '#990099'
     "None": '#000000'
     "Liao": '#003300'
     "Rasalhague": '#a0a0a0'
     "Ghost Bear": '#c0c0c0'
-    "Jade Falcon": '#00ff00'
+    "Jade Falcon": '#b22222'
     "Wolf": '#994c00'
     "Smoke Jaguar": "#ffcc99"
 

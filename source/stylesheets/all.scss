@@ -18,6 +18,17 @@ body {
 .dot {
   stroke: #000;
 }
+
+.contested {
+  stroke: #F00;
+  stroke-width: 20;
+  stroke-opacity: .5;
+}
+
+.peace {
+  stroke: #000;
+}
+
 .overlay {
   fill: none;
   pointer-events: all;

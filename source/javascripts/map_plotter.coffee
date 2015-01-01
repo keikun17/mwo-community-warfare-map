@@ -92,9 +92,11 @@ $ ->
         d.owner_id = old_data[prop].owner.id
         d.owner_name = old_data[prop].owner.name
         d.name = old_data[prop].name
-        owners.push({id: d.owner_id, name: d.owner_name})
-        owner_ids.push(d.owner_id)
-        owner_names.push(d.owner_name)
+        d.contested = old_data[prop].contested
+
+        # owners.push({id: d.owner_id, name: d.owner_name})
+        # owner_ids.push(d.owner_id)
+        # owner_names.push(d.owner_name)
 
         data.push(d)
 
@@ -112,8 +114,14 @@ $ ->
     # Planet dots
     window.circle = svg.selectAll(".dot").data(data).enter()
       .append("circle")
-        .attr("class", "dot")
-        .attr("r", 1.5)
+        .attr "class", (d) ->
+          klass = if d.contested == 1
+            'dot contested'
+          else if d.contested == 0
+            'dot peace'
+          klass
+
+        .attr("r", 3.5)
         # .attr "cx", (d) ->
         #   x d.position.x
         # .attr "cy", (d) ->

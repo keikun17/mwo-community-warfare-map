@@ -12,6 +12,13 @@
     .container
       .row-fluid
         .col-lg-12
-          %h1 Current State of the Inner Sphere
+          %h1 Current State of the Inner Sphere (LIVE)
+          Zoom / Pan around around the map. Planets with red circles are contested. (Coming soon: Display planetary invasion's completion status)
           #map-container
             = yield
+    .footer.text-center
+      By #{link_to "@keikun17", "https://www.twitter.com/keikun17"}. Say Hello to me in-game @ 'Marthe Pryde'.
+      %br
+      Also Check out my #{link_to "Browser based MWO Heat simulator", "http://keikun17.github.io/mwo_heat_simulator/"}
+      %br
+      MechWarrior: Online Copyright ©2014 Piranha Games Inc

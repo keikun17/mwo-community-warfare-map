@@ -9,70 +9,76 @@
     <link href="../../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" />
     <script src="../../javascripts/all.js" type="text/javascript"></script>
   </head>
-  <body class='components components_bootstrap-sass components_bootstrap-sass_CONTRIBUTING'>
-    zoom all the way out to view the map. go on...
-    <h1 id="contributing-to-bootstrap">Contributing to Bootstrap</h1>
-    
-    <p>Looking to contribute something to Bootstrap? <strong>Here's how you can help.</strong></p>
-    
-    <h2 id="reporting-issues">Reporting issues</h2>
-    
-    <p>We only accept issues that are bug reports or feature requests. Bugs must be isolated and reproducible problems that we can fix within the Bootstrap core. Please read the following guidelines before opening any issue.</p>
-    
-    <ol>
-      <li><strong>Search for existing issues.</strong> We get a lot of duplicate issues, and you'd help us out a lot by first checking if someone else has reported the same issue. Moreover, the issue may have already been resolved with a fix available.</li>
-      <li><strong>Create an isolated and reproducible test case.</strong> Be sure the problem exists in Bootstrap's code with a <a href="http://css-tricks.com/reduced-test-cases/">reduced test case</a> that should be included in each bug report.</li>
-      <li><strong>Include a live example.</strong> Make use of jsFiddle or jsBin to share your isolated test cases.</li>
-      <li><strong>Share as much information as possible.</strong> Include operating system and version, browser and version, version of Bootstrap, customized or vanilla build, etc. where appropriate. Also include steps to reproduce the bug.</li>
-    </ol>
-    
-    <h2 id="pull-requests">Pull requests</h2>
-    
-    <ul>
-      <li>CSS changes must be done in <code>.less</code> files first, never just the compiled <code>.css</code> files</li>
-      <li>If modifying the <code>.less</code> files, always recompile and commit the compiled files <code>bootstrap.css</code> and <code>bootstrap.min.css</code></li>
-      <li>Try not to pollute your pull request with unintended changes–keep them simple and small</li>
-      <li>Try to share which browsers your code has been tested in before submitting a pull request</li>
-      <li>Pull requests should always be against the <code>master</code> branch, never against <code>gh-pages</code>.</li>
-    </ul>
-    
-    <h2 id="coding-standards">Coding standards</h2>
-    
-    <h3 id="html">HTML</h3>
-    
-    <ul>
-      <li>Two spaces for indentation, never tabs</li>
-      <li>Double quotes only, never single quotes</li>
-      <li>Always use proper indentation</li>
-      <li>Use tags and elements appropriate for an HTML5 doctype (e.g., self-closing tags)</li>
-      <li>Use CDNs and HTTPS for third-party JS when possible. We don't use protocol-relative URLs in this case because they break when viewing the page locally via <code>file://</code>.</li>
-    </ul>
-    
-    <h3 id="css">CSS</h3>
-    
-    <ul>
-      <li>Adhere to the <a href="http://markdotto.com/2011/11/29/css-property-order/">RECESS CSS property order</a></li>
-      <li>Multiple-line approach (one property and value per line)</li>
-      <li>Always a space after a property's colon (e.g., <code>display: block;</code> and not <code>display:block;</code>)</li>
-      <li>End all lines with a semi-colon</li>
-      <li>For multiple, comma-separated selectors, place each selector on its own line</li>
-      <li>Attribute selectors, like <code>input[type="text"]</code> should always wrap the attribute's value in double quotes, for consistency and safety (see this <a href="http://mathiasbynens.be/notes/unquoted-attribute-values">blog post on unquoted attribute values</a> that can lead to XSS attacks).</li>
-    </ul>
-    
-    <h3 id="js">JS</h3>
-    
-    <ul>
-      <li>No semicolons</li>
-      <li>Comma first</li>
-      <li>2 spaces (no tabs)</li>
-      <li>strict mode</li>
-      <li>"Attractive"</li>
-    </ul>
-    
-    <h2 id="license">License</h2>
-    
-    <p>With v3.1, we're moving from the Apache 2 to the MIT license for the Bootstrap code (not the docs). We're in the process of collecting permissions from all Bootstrap contributors with code still part of the project to make this happen. For details, please see <a href="https://github.com/twbs/bootstrap/issues/2054">#2054</a>.</p>
-    
-    <p>By contributing your code, you agree to dual-license your contribution under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE">Apache 2</a> and <a href="https://github.com/twbs/bootstrap/blob/master/MIT">MIT</a> licenses.</p>
+  <body>
+    <div class='container'>
+      <div class='row-fluid'>
+        <div class='col-lg-12'>
+          <h1>Current State of the Inner Sphere</h1>
+          <h1 id="contributing-to-bootstrap">Contributing to Bootstrap</h1>
+          
+          <p>Looking to contribute something to Bootstrap? <strong>Here's how you can help.</strong></p>
+          
+          <h2 id="reporting-issues">Reporting issues</h2>
+          
+          <p>We only accept issues that are bug reports or feature requests. Bugs must be isolated and reproducible problems that we can fix within the Bootstrap core. Please read the following guidelines before opening any issue.</p>
+          
+          <ol>
+            <li><strong>Search for existing issues.</strong> We get a lot of duplicate issues, and you'd help us out a lot by first checking if someone else has reported the same issue. Moreover, the issue may have already been resolved with a fix available.</li>
+            <li><strong>Create an isolated and reproducible test case.</strong> Be sure the problem exists in Bootstrap's code with a <a href="http://css-tricks.com/reduced-test-cases/">reduced test case</a> that should be included in each bug report.</li>
+            <li><strong>Include a live example.</strong> Make use of jsFiddle or jsBin to share your isolated test cases.</li>
+            <li><strong>Share as much information as possible.</strong> Include operating system and version, browser and version, version of Bootstrap, customized or vanilla build, etc. where appropriate. Also include steps to reproduce the bug.</li>
+          </ol>
+          
+          <h2 id="pull-requests">Pull requests</h2>
+          
+          <ul>
+            <li>CSS changes must be done in <code>.less</code> files first, never just the compiled <code>.css</code> files</li>
+            <li>If modifying the <code>.less</code> files, always recompile and commit the compiled files <code>bootstrap.css</code> and <code>bootstrap.min.css</code></li>
+            <li>Try not to pollute your pull request with unintended changes–keep them simple and small</li>
+            <li>Try to share which browsers your code has been tested in before submitting a pull request</li>
+            <li>Pull requests should always be against the <code>master</code> branch, never against <code>gh-pages</code>.</li>
+          </ul>
+          
+          <h2 id="coding-standards">Coding standards</h2>
+          
+          <h3 id="html">HTML</h3>
+          
+          <ul>
+            <li>Two spaces for indentation, never tabs</li>
+            <li>Double quotes only, never single quotes</li>
+            <li>Always use proper indentation</li>
+            <li>Use tags and elements appropriate for an HTML5 doctype (e.g., self-closing tags)</li>
+            <li>Use CDNs and HTTPS for third-party JS when possible. We don't use protocol-relative URLs in this case because they break when viewing the page locally via <code>file://</code>.</li>
+          </ul>
+          
+          <h3 id="css">CSS</h3>
+          
+          <ul>
+            <li>Adhere to the <a href="http://markdotto.com/2011/11/29/css-property-order/">RECESS CSS property order</a></li>
+            <li>Multiple-line approach (one property and value per line)</li>
+            <li>Always a space after a property's colon (e.g., <code>display: block;</code> and not <code>display:block;</code>)</li>
+            <li>End all lines with a semi-colon</li>
+            <li>For multiple, comma-separated selectors, place each selector on its own line</li>
+            <li>Attribute selectors, like <code>input[type="text"]</code> should always wrap the attribute's value in double quotes, for consistency and safety (see this <a href="http://mathiasbynens.be/notes/unquoted-attribute-values">blog post on unquoted attribute values</a> that can lead to XSS attacks).</li>
+          </ul>
+          
+          <h3 id="js">JS</h3>
+          
+          <ul>
+            <li>No semicolons</li>
+            <li>Comma first</li>
+            <li>2 spaces (no tabs)</li>
+            <li>strict mode</li>
+            <li>"Attractive"</li>
+          </ul>
+          
+          <h2 id="license">License</h2>
+          
+          <p>With v3.1, we're moving from the Apache 2 to the MIT license for the Bootstrap code (not the docs). We're in the process of collecting permissions from all Bootstrap contributors with code still part of the project to make this happen. For details, please see <a href="https://github.com/twbs/bootstrap/issues/2054">#2054</a>.</p>
+          
+          <p>By contributing your code, you agree to dual-license your contribution under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE">Apache 2</a> and <a href="https://github.com/twbs/bootstrap/blob/master/MIT">MIT</a> licenses.</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

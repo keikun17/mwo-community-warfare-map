@@ -52,11 +52,17 @@ $ ->
     "translate(" + x(d.position.x) + "," + y(d.position.y) + ")"
 
   svg = d3.select("map").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .call(zoomListener)
+    .append("g")
+
+  svg.append("rect")
+      .attr("class", "overlay")
+      .attr("width", width)
+      .attr("height", height)
 
   d3.json "https://static.mwomercs.com/data/cw/mapdata.json", (error, data) ->
     delete data.generated;

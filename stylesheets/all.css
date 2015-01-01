@@ -6745,7 +6745,17 @@ body {
 .dot {
   stroke: #000; }
 
-/* line 22, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
+/* line 23, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
+.contested {
+  stroke: #F00;
+  stroke-width: 20;
+  stroke-opacity: .5; }
+
+/* line 29, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
+.peace {
+  stroke: #000; }
+
+/* line 33, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
 .overlay {
   fill: none;
   pointer-events: all; }

@@ -34,28 +34,26 @@
       circle.attr("transform", transform);
       return planet_names.attr("transform", transform);
     };
-    window.zoomListener = d3.behavior.zoom().x(x).y(y).scaleExtent([.5, 500]).on("zoom", zoomed);
+    window.zoomListener = d3.behavior.zoom().x(x).y(y).scaleExtent([.5, 10]).on("zoom", zoomed);
     transform = function(d) {
       return "translate(" + x(d.position.x) + "," + y(d.position.y) + ")";
     };
     svg = d3.select("map").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")").call(zoomListener).append("g");
     svg.append("rect").attr("class", "overlay").attr("width", width).attr("height", height);
     return d3.json("https://static.mwomercs.com/data/cw/mapdata.json", function(error, data) {
-      var d, legend, old_data, owner_ids, owner_names, owners, prop;
+      var d, legend, old_data, prop;
       delete data.generated;
       for (prop in data) {
         if (!__hasProp.call(data, prop)) continue;
         if (data.hasOwnProperty(prop)) {
           data[prop].position.x = +data[prop].position.x;
           data[prop].position.y = +data[prop].position.y;
+          data[prop].contested = +data[prop].contested;
           data[prop].owner_id = +data[prop].owner.id;
         }
       }
       old_data = data;
       data = [];
-      owners = [];
-      owner_ids = [];
-      owner_names = [];
       for (prop in old_data) {
         if (!__hasProp.call(old_data, prop)) continue;
         if (old_data.hasOwnProperty(prop)) {
@@ -66,24 +64,21 @@
           d.owner_id = old_data[prop].owner.id;
           d.owner_name = old_data[prop].owner.name;
           d.name = old_data[prop].name;
-          owners.push({
-            id: d.owner_id,
-            name: d.owner_name
-          });
-          owner_ids.push(d.owner_id);
-          owner_names.push(d.owner_name);
+          d.contested = old_data[prop].contested;
           data.push(d);
         }
       }
-      window.owner_ids = $.unique(owner_ids);
-      window.owner_names = $.unique(owner_names);
       x.domain(d3.extent(data, function(d) {
         return d.position.x;
       })).nice();
       y.domain(d3.extent(data, function(d) {
         return d.position.y;
       })).nice();
-      window.circle = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", 1.5).style("fill", function(d) {
+      window.circle = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", function(d) {
+        var klass;
+        klass = d.contested === 1 ? 'dot contested' : d.contested === 0 ? 'dot peace' : void 0;
+        return klass;
+      }).attr("r", 3.5).style("fill", function(d) {
         return color_mapping[d.owner_name];
       }).attr("transform", transform(d));
       window.planet_names = svg.selectAll("text").data(data).enter().append("text").style("fill", function(d) {

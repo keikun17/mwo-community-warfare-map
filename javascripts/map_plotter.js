@@ -2,15 +2,17 @@
   var __hasProp = {}.hasOwnProperty;
 
   $(function() {
-    var color, height, margin, svg, transform, width, x, y, zoomed;
+    var color, height, mapRatio, margin, svg, transform, width, x, y, zoomed;
     margin = {
-      top: 20,
-      right: 20,
-      bottom: 30,
-      left: 40
+      top: 10,
+      left: 10,
+      bottom: 10,
+      right: 10
     };
-    width = 960 - margin.left - margin.right;
-    height = 600 - margin.top - margin.bottom;
+    width = parseInt(d3.select('#map-container').style('width'));
+    width = width - margin.left - margin.right;
+    mapRatio = .5;
+    height = width * mapRatio;
     x = d3.scale.linear().domain([-width / 2, width / 2]).range([0, width]);
     y = d3.scale.linear().domain([-height / 2, height / 2]).range([height, 0]);
     color = d3.scale.category10();
@@ -32,7 +34,7 @@
       circle.attr("transform", transform);
       return planet_names.attr("transform", transform);
     };
-    window.zoomListener = d3.behavior.zoom().x(x).y(y).scaleExtent([.1, 30000]).on("zoom", zoomed);
+    window.zoomListener = d3.behavior.zoom().x(x).y(y).scaleExtent([.5, 500]).on("zoom", zoomed);
     transform = function(d) {
       return "translate(" + x(d.position.x) + "," + y(d.position.y) + ")";
     };
@@ -95,7 +97,7 @@
       legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
         return d;
       });
-      zoomListener.translate([-480, -300]).scale(2);
+      zoomListener.translate([-width / 2, -height / 2]).scale(2);
       return zoomListener.event(svg.transition().duration(3000));
     });
   });

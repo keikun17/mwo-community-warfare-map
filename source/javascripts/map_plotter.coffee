@@ -72,6 +72,7 @@ $ ->
       if (data.hasOwnProperty(prop))
         data[prop].position.x = +data[prop].position.x
         data[prop].position.y = +data[prop].position.y
+        data[prop].contested = +data[prop].contested
         data[prop].owner_id = +data[prop].owner.id
 
     # NOTE : Not included in the original algo
@@ -79,9 +80,9 @@ $ ->
     # 2. populate owners table
     old_data = data
     data = []
-    owners = []
-    owner_ids = []
-    owner_names = []
+    # owners = []
+    # owner_ids = []
+    # owner_names = []
 
     for own prop of old_data
       if (old_data.hasOwnProperty(prop))
@@ -100,8 +101,8 @@ $ ->
 
         data.push(d)
 
-    window.owner_ids = $.unique(owner_ids)
-    window.owner_names = $.unique(owner_names)
+    # window.owner_ids = $.unique(owner_ids)
+    # window.owner_names = $.unique(owner_names)
 
     x.domain(d3.extent(data, (d) ->
       d.position.x

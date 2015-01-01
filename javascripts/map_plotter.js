@@ -4,10 +4,10 @@
   $(function() {
     var color, height, mapRatio, margin, svg, transform, width, x, y, zoomed;
     margin = {
-      top: 10,
-      left: 10,
-      bottom: 10,
-      right: 10
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0
     };
     width = parseInt(d3.select('#map-container').style('width'));
     width = width - margin.left - margin.right;
@@ -93,7 +93,7 @@
       legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
         return d;
       });
-      zoomListener.translate([-width / 2, -height / 2]).scale(2);
+      zoomListener.translate([-width / 20, -height / 20]).scale(1);
       return zoomListener.event(svg.transition().duration(3000));
     });
   });

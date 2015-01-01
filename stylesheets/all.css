@@ -6758,4 +6758,6 @@ body {
 /* line 33, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
 .overlay {
   fill: none;
-  pointer-events: all; }
+  pointer-events: all;
+  stroke: #000;
+  stroke-width: 5; }

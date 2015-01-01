@@ -1,12 +1,23 @@
 $ ->
-  margin =
-    top: 20
-    right: 20
-    bottom: 30
-    left: 40
+  # margin =
+  #   top: 20
+  #   right: 20
+  #   bottom: 30
+  #   left: 40
+  #
+  # width = 960 - margin.left - margin.right
+  # height = 600 - margin.top - margin.bottom
 
-  width = 960 - margin.left - margin.right
-  height = 600 - margin.top - margin.bottom
+  margin =
+    top: 10
+    left: 10
+    bottom: 10
+    right: 10
+
+  width = parseInt(d3.select('#map-container').style('width'))
+  width = width - margin.left - margin.right
+  mapRatio = .5
+  height = width * mapRatio;
 
   x = d3.scale.linear().domain([-width / 2, width / 2]).range([0,width])
   y = d3.scale.linear().domain([-height / 2, height / 2]).range([height,0])
@@ -135,5 +146,5 @@ $ ->
     # svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text "Y"
 
     # Default zoom
-    zoomListener.translate([-480,-300]).scale(2);
+    zoomListener.translate([-width / 2, -height / 2]).scale(2);
     zoomListener.event(svg.transition().duration(3000));

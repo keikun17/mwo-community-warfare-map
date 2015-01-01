@@ -8,6 +8,8 @@
     %title= "Zoom out to view the map | Mechwarrior Online Community Warfare Map"
     = stylesheet_link_tag "normalize", "all"
     = javascript_include_tag  "all"
-  %body{:class => page_classes}
+  %body
+    %h1 Something
+    %map{:class => page_classes, :style => 'border: 1px solid black'}
     zoom all the way out to view the map. go on...
     = yield

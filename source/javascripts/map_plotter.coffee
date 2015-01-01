@@ -6,16 +6,12 @@ $ ->
     bottom: 30
     left: 40
 
-  width = 3000 - margin.left - margin.right
-  height = 3000 - margin.top - margin.bottom
-  x = d3.scale.linear().range([
-    0
-    width
-  ])
-  y = d3.scale.linear().range([
-    height
-    0
-  ])
+  width = 960 - margin.left - margin.right
+  height = 600 - margin.top - margin.bottom
+
+  x = d3.scale.linear().domain([-width / 2, width / 2]).range([0,width])
+  y = d3.scale.linear().domain([-height / 2, height / 2]).range([height,0])
+
   color = d3.scale.category10()
   window.color_mapping =
     "Piranha Games": '#000000'
@@ -32,10 +28,27 @@ $ ->
     "Smoke Jaguar": "#ffcc99"
 
 
+  zoomed = ->
+    console.log 'kek'
+    circle.attr("transform", transform);
+    planet_names.attr("transform", transform);
 
-  xAxis = d3.svg.axis().scale(x).orient("bottom")
-  yAxis = d3.svg.axis().scale(y).orient("left")
-  svg = d3.select("body").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  zoom = d3.behavior.zoom()
+    .x(x)
+    .y(y)
+    .scaleExtent([.1,30000])
+    .on("zoom", zoomed)
+
+  transform = (d) ->
+    "translate(" + x(d.position.x) + "," + y(d.position.y) + ")"
+
+  svg = d3.select("map").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .call(zoom)
+
   d3.json "https://static.mwomercs.com/data/cw/mapdata.json", (error, data) ->
     delete data.generated;
     window._mapdata = data
@@ -83,25 +96,30 @@ $ ->
     )).nice()
 
     # Planet dots
-    # svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text "X"
-    # svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text "Y"
-    svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", 1.5).attr("cx", (d) ->
-      x d.position.x
-    ).attr("cy", (d) ->
-      y d.position.y
-    ).style "fill", (d) ->
-      color_mapping[d.owner_name]
+    window.circle = svg.selectAll(".dot").data(data).enter()
+      .append("circle")
+        .attr("class", "dot")
+        .attr("r", 1.5)
+        # .attr "cx", (d) ->
+        #   x d.position.x
+        # .attr "cy", (d) ->
+        #   y d.position.y
+        .style "fill", (d) ->
+          color_mapping[d.owner_name]
+        .attr("transform", transform(d))
 
     # Planet names
-    svg.selectAll("text").data(data).enter().append("text").attr("x", (d) ->
-      x d.position.x
-    ).attr("y", (d) ->
-      y d.position.y
-    ).style("fill", (d) ->
-      color_mapping[d.owner_name]
-    ).text( (d) ->
-      d.name
-    )
+    window.planet_names = svg.selectAll("text").data(data).enter()
+      .append("text")
+        # .attr "x", (d) ->
+        #   x d.position.x
+        # .attr "y", (d) ->
+        #   y d.position.y
+        .style "fill", (d) ->
+          color_mapping[d.owner_name]
+        .text (d) ->
+          d.name
+        .attr("transform", transform(d))
 
     legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->
       "translate(0," + i * 20 + ")"

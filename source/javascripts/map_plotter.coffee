@@ -9,10 +9,10 @@ $ ->
   # height = 600 - margin.top - margin.bottom
 
   margin =
-    top: 10
-    left: 10
-    bottom: 10
-    right: 10
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
 
   width = parseInt(d3.select('#map-container').style('width'))
   width = width - margin.left - margin.right

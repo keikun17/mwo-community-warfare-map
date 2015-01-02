@@ -30,10 +30,10 @@ $ ->
     "Kurita": '#cc0000'
     "Marik": '#990099'
     "None": '#000000'
-    "Liao": '#003300'
+    "Liao": '#007700'
     "Rasalhague": '#a0a0a0'
     "Ghost Bear": '#c0c0c0'
-    "Jade Falcon": '#b22222'
+    "Jade Falcon": '#33ff33'
     "Wolf": '#994c00'
     "Smoke Jaguar": "#ffcc99"
 

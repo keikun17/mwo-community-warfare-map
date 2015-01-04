@@ -39,7 +39,8 @@ $ ->
 
 
   zoomed = ->
-    circle.attr("transform", transform);
+    peace_planets.attr("transform", transform);
+    contested_planets.attr("transform", transform);
     planet_names.attr("transform", transform);
 
   window.zoomListener = d3.behavior.zoom()
@@ -112,26 +113,25 @@ $ ->
       d.position.y
     )).nice()
 
+
+    window.planets = svg.selectAll(".dot").data(data).enter()
+
     # Planet dots
-    window.circle = svg.selectAll(".dot").data(data).enter()
-      .append("circle")
-        .attr "class", (d) ->
-          klass = if d.contested == 1
-            'dot contested'
-          else if d.contested == 0
-            'dot peace'
-          klass
+    window.peace_planets = planets.append("circle").filter (d) ->
+        d.contested == 0
+      .attr "class", 'dot peace'
+      .attr("r", 3.5)
+      .style "fill", (d) ->
+        color_mapping[d.owner_name]
+      .attr("transform", transform(d))
 
-        .attr("r", 3.5)
-        # .attr "cx", (d) ->
-        #   x d.position.x
-        # .attr "cy", (d) ->
-        #   y d.position.y
-        .style "fill", (d) ->
-          color_mapping[d.owner_name]
-        .attr("transform", transform(d))
-
-
+    window.contested_planets = planets.append("circle").filter (d) ->
+        d.contested == 1
+      .attr "class", 'dot contested'
+      .attr("r", 3.5)
+      .style "fill", (d) ->
+        color_mapping[d.owner_name]
+      .attr("transform", transform(d))
 
     # Planet names
     window.planet_names = svg.selectAll("text").data(data).enter()

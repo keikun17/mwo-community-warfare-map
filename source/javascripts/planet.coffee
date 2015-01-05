@@ -14,7 +14,7 @@ $ ->
   x = d3.scale.linear().domain([-width / 2, width / 2]).range([0,width])
   y = d3.scale.linear().domain([-height / 2, height / 2]).range([height,0])
 
-  data = [[30,50]]
+  data = [[1,1,1,1,1,1,0,0]]
 
   console.log x.domain()
   console.log y.domain()
@@ -29,14 +29,24 @@ $ ->
       .attr("width", width)
       .attr("width", height)
 
+
+  chart = circularHeatChart()
+    .segmentHeight(5)
+    .innerRadius(20)
+    .numSegments(8)
+    .range(['white', 'blue'])
+    .segmentLabels(['1', '2', '3','4','5','6','7','8'])
+
   window.circle = svg.selectAll('.dot').data(data).enter()
-    .append("circle")
-      .attr("class", "dot")
-      .attr("r", 5)
-      .style('fill', '#ffcc00')
-      .attr "transform", (d) ->
-        console.log 'test'
-        "translate(" + d[0] + ',' +  d[1] + ")"
+    .append('svg')
+    .call(chart)
+    # .append("circle")
+    #   .attr("class", "dot")
+    #   .attr("r", 5)
+    #   .style('fill', '#ffcc00')
+    #   .attr "transform", (d) ->
+    #     console.log 'test'
+    #     "translate(" + d[0] + ',' +  d[1] + ")"
 
 
 

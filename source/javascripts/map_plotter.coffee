@@ -39,9 +39,11 @@ $ ->
 
 
   zoomed = ->
-    peace_planets.attr("transform", transform);
-    contested_planets.attr("transform", transform);
-    planet_names.attr("transform", transform);
+    # peace_planets.attr("transform", transform)
+    # contested_planets.attr("transform", transform)
+    d3.select('map').selectAll(".dot").attr("transform", transform)
+    $('g.circular-heat').attr("transform", "translate(0,0)")
+    d3.select('map').selectAll("text").attr("transform", transform)
 
   window.zoomListener = d3.behavior.zoom()
     .x(x)
@@ -50,7 +52,8 @@ $ ->
     .on("zoom", zoomed)
 
   transform = (d) ->
-    "translate(" + x(d.position.x) + "," + y(d.position.y) + ")"
+    if typeof(d.position) != 'undefined'
+      "translate(" + x(d.position.x) + "," + y(d.position.y) + ")"
 
   svg = d3.select("map").append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -116,22 +119,13 @@ $ ->
 
     window.planets = svg.selectAll(".dot").data(data).enter()
 
-    # Planet dots
-    window.peace_planets = planets.append("circle").filter (d) ->
-        d.contested == 0
-      .attr "class", 'dot peace'
-      .attr("r", 3.5)
-      .style "fill", (d) ->
-        color_mapping[d.owner_name]
-      .attr("transform", transform(d))
+    chart = circularHeatChart()
+      .segmentHeight(5)
+      .innerRadius(30000)
+      .numSegments(8)
+      .range(['red', 'blue'])
+      .segmentLabels(['1', '2', '3','4','5','6','7','8'])
 
-    window.contested_planets = planets.append("circle").filter (d) ->
-        d.contested == 1
-      .attr "class", 'dot contested'
-      .attr("r", 3.5)
-      .style "fill", (d) ->
-        color_mapping[d.owner_name]
-      .attr("transform", transform(d))
 
     # Planet names
     window.planet_names = svg.selectAll("text").data(data).enter()
@@ -145,6 +139,54 @@ $ ->
         .text (d) ->
           d.name
         .attr("transform", transform(d))
+
+    # Planet dots
+    window.peace_planets = planets.append("circle").filter (d) ->
+        d.contested == 0
+      .attr "class", 'dot peace'
+      .attr("r", 3.5)
+      .style "fill", (d) ->
+        color_mapping[d.owner_name]
+      .attr("transform", transform(d))
+
+    window.peace_planets = planets.append("circle").filter (d) ->
+        d.contested == 1
+      .attr "class", 'dot contested'
+      .attr("r", 3.5)
+      .style "fill", (d) ->
+        color_mapping[d.owner_name]
+      .attr("transform", transform(d))
+
+    window.xsvg = svg
+    window.xplanets = planets
+
+    ####### START OF WIP CONTESTED IMPLEMENTATION 
+
+    # window.contested_data = $(data).filter (index) ->
+    #   data[index].contested == 1
+    #
+    # # `cd` is for a unit of contested data
+    # window.contested_planets = []
+    # $.each contested_data, (index, cd) ->
+    #   lol_data = [[69,69,69,69,69,0,0,0]]
+    #   console.log cd.position.x
+    #
+    #   contested_planet = svg.selectAll('.keksad').data(lol_data).enter()
+    #     .append('svg')
+    #     .call(chart)
+    #     .attr("transform", "translate(" + cd.position.x + ',' + cd.position.y + ")")
+    #     .attr("transform", "translate(5,5)")
+    #
+    #   # contested_planet = svg.selectAll('.dot').data(lol_data).enter()
+    #   #   .append('svg')
+    #   #   .call(chart)
+    #   #   .attr("transform", "translate(" + cd.position.x + ',' + cd.position.y + ")")
+    #
+    #   window.contested_planets.push contested_planet
+    #
+    #
+
+    # END OF WIP
 
     legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->
       "translate(0," + i * 20 + ")"

@@ -41,9 +41,11 @@ $ ->
   zoomed = ->
     # peace_planets.attr("transform", transform)
     # contested_planets.attr("transform", transform)
-    d3.select('map').selectAll(".dot").attr("transform", transform)
-    $('g.circular-heat').attr("transform", "translate(0,0)")
-    d3.select('map').selectAll("text").attr("transform", transform)
+    d3.select('map').selectAll(".peace").attr("transform", transform)
+    d3.select('map').selectAll("text.planetname").attr("transform", transform)
+    # d3.select('map').selectAll(".contested").attr("transform", transform)
+    d3.select('map').selectAll(".contested_group").attr("transform", transform)
+    d3.select('map').selectAll(".contested_group").attr("transform", transform)
 
   window.zoomListener = d3.behavior.zoom()
     .x(x)
@@ -78,6 +80,7 @@ $ ->
         data[prop].position.y = +data[prop].position.y
         data[prop].contested = +data[prop].contested
         data[prop].owner_id = +data[prop].owner.id
+        data[prop].territories = data[prop].territories
 
     # NOTE : Not included in the original algo
     # 1. Convert obeject into array
@@ -98,6 +101,9 @@ $ ->
         d.owner_name = old_data[prop].owner.name
         d.name = old_data[prop].name
         d.contested = old_data[prop].contested
+        d.territories_captured = old_data[prop].territories.filter (t) ->
+            t != '0'
+          .length
 
         # owners.push({id: d.owner_id, name: d.owner_name})
         # owner_ids.push(d.owner_id)
@@ -121,7 +127,7 @@ $ ->
 
     chart = circularHeatChart()
       .segmentHeight(5)
-      .innerRadius(30000)
+      .innerRadius(20)
       .numSegments(8)
       .range(['red', 'blue'])
       .segmentLabels(['1', '2', '3','4','5','6','7','8'])
@@ -134,10 +140,15 @@ $ ->
         #   x d.position.x
         # .attr "y", (d) ->
         #   y d.position.y
+        .attr("class", 'planetname')
         .style "fill", (d) ->
           color_mapping[d.owner_name]
         .text (d) ->
-          d.name
+          if d.contested == 1
+            name = "[#{d.territories_captured}]" + d.name
+          else
+            name = d.name
+          name
         .attr("transform", transform(d))
 
     # Planet dots

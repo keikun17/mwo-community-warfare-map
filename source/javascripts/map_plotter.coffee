@@ -160,44 +160,18 @@ $ ->
         color_mapping[d.owner_name]
       .attr("transform", transform(d))
 
-    window.peace_planets = planets.append("circle").filter (d) ->
+    contested_planets_enter = planets.append("g").filter (d) ->
         d.contested == 1
+      .attr "class", 'contested_group'
+      .attr("transform", transform(d))
+
+    contested_planets_enter.append("circle")
       .attr "class", 'dot contested'
       .attr("r", 3.5)
       .style "fill", (d) ->
         color_mapping[d.owner_name]
-      .attr("transform", transform(d))
 
-    window.xsvg = svg
-    window.xplanets = planets
-
-    ####### START OF WIP CONTESTED IMPLEMENTATION 
-
-    # window.contested_data = $(data).filter (index) ->
-    #   data[index].contested == 1
-    #
-    # # `cd` is for a unit of contested data
-    # window.contested_planets = []
-    # $.each contested_data, (index, cd) ->
-    #   lol_data = [[69,69,69,69,69,0,0,0]]
-    #   console.log cd.position.x
-    #
-    #   contested_planet = svg.selectAll('.keksad').data(lol_data).enter()
-    #     .append('svg')
-    #     .call(chart)
-    #     .attr("transform", "translate(" + cd.position.x + ',' + cd.position.y + ")")
-    #     .attr("transform", "translate(5,5)")
-    #
-    #   # contested_planet = svg.selectAll('.dot').data(lol_data).enter()
-    #   #   .append('svg')
-    #   #   .call(chart)
-    #   #   .attr("transform", "translate(" + cd.position.x + ',' + cd.position.y + ")")
-    #
-    #   window.contested_planets.push contested_planet
-    #
-    #
-
-    # END OF WIP
+    # contested_planets_enter.append('text').text('tinginhere')
 
     legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (d, i) ->
       "translate(0," + i * 20 + ")"

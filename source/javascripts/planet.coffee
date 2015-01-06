@@ -22,13 +22,7 @@ $ ->
   svg = d3.select("planet").append("svg")
       .attr("width", width)
       .attr("height", height)
-    .append("g")
-
-  svg.append("rect")
-      .attr("class", "overlay")
-      .attr("width", width)
-      .attr("width", height)
-
+    .append("g").attr('transform', "translate(50,50)")
 
   chart = circularHeatChart()
     .segmentHeight(5)
@@ -40,15 +34,3 @@ $ ->
   window.circle = svg.selectAll('.dot').data(data).enter()
     .append('svg')
     .call(chart)
-    # .append("circle")
-    #   .attr("class", "dot")
-    #   .attr("r", 5)
-    #   .style('fill', '#ffcc00')
-    #   .attr "transform", (d) ->
-    #     console.log 'test'
-    #     "translate(" + d[0] + ',' +  d[1] + ")"
-
-
-
-
-

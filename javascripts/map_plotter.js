@@ -50,7 +50,7 @@
     svg = d3.select("map").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")").call(zoomListener).append("g");
     svg.append("rect").attr("class", "overlay").attr("width", width).attr("height", height);
     return d3.json("https://static.mwomercs.com/data/cw/mapdata.json", function(error, data) {
-      var chart, contested_planets_enter, d, legend, old_data, prop;
+      var contested_planets_enter, d, legend, old_data, prop;
       delete data.generated;
       for (prop in data) {
         if (!__hasProp.call(data, prop)) continue;
@@ -88,7 +88,6 @@
         return d.position.y;
       })).nice();
       window.planets = svg.selectAll(".dot").data(data).enter();
-      chart = circularHeatChart().segmentHeight(5).innerRadius(20).numSegments(8).range(['red', 'blue']).segmentLabels(['1', '2', '3', '4', '5', '6', '7', '8']);
       window.planet_names = svg.selectAll("text").data(data).enter().append("text").attr("class", 'planetname').attr("font-size", '3px').style("fill", function(d) {
         return color_mapping[d.owner_name];
       }).text(function(d) {
@@ -113,10 +112,6 @@
       });
       legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
         return "translate(0," + i * 20 + ")";
-      });
-      legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
-      legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
-        return d;
       });
       zoomListener.translate([-width / 20, -height / 20]).scale(1);
       return zoomListener.event(svg.transition().duration(3000));

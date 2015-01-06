@@ -42,7 +42,7 @@ $ ->
     # peace_planets.attr("transform", transform)
     # contested_planets.attr("transform", transform)
     d3.select('map').selectAll(".peace").attr("transform", transform)
-    d3.select('map').selectAll("text.planetname").attr("transform", transform)
+    d3.select('map').selectAll("text.planetname").attr("transform", transform_text)
     # d3.select('map').selectAll(".contested").attr("transform", transform)
     d3.select('map').selectAll(".contested_group").attr("transform", transform)
     d3.select('map').selectAll(".contested_group").attr("transform", transform)
@@ -56,6 +56,10 @@ $ ->
   transform = (d) ->
     if typeof(d.position) != 'undefined'
       "translate(" + x(d.position.x) + "," + y(d.position.y) + ")"
+
+  transform_text = (d) ->
+    if typeof(d.position) != 'undefined'
+      "translate(" + x(d.position.x) + "," + y(d.position.y) + ") scale(#{d3.event.scale})"
 
   svg = d3.select("map").append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -141,6 +145,7 @@ $ ->
         # .attr "y", (d) ->
         #   y d.position.y
         .attr("class", 'planetname')
+        .attr("font-size", '3px')
         .style "fill", (d) ->
           color_mapping[d.owner_name]
         .text (d) ->

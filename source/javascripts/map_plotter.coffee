@@ -232,11 +232,11 @@ $ ->
         window.kek = planet
 
       if is_clan_offensive(planet)
-        $('#clan_offensive').append("<li>[#{planet.territories_captured}/8] #{planet.name}</li>")
+        $('#clan_offensive').append("<li>[#{planet.territories_captured}/8] #{planet.name} (#{planet.owner_name} vs #{planet.invader_name})</li>")
 
       else if is_house_offensive(planet)
-        $('#is_offensive').append("<li>[#{planet.territories_captured}/8] #{planet.name}</li>")
+        $('#is_offensive').append("<li>[#{planet.territories_captured}/8] #{planet.name} (#{planet.owner_name} vs #{planet.invader_name})</li>")
 
       else if is_house_vs_house(planet)
-        $('#petty_fight').append("<li>[#{planet.territories_captured}/8] #{planet.name}</li>")
+        $('#petty_fight').append("<li>[#{planet.territories_captured}/8] #{planet.name} (#{planet.owner_name} vs #{planet.invader_name})</li>")
 

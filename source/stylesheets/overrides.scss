@@ -1,0 +1,41 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.contested {
+  stroke: #F00;
+  stroke-width: 20;
+  stroke-opacity: .5;
+}
+
+.peace {
+  stroke: #000;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+  stroke: #000;
+  stroke-width: 5;
+}
+
+// Faction colors
+.faction-piranhagames { color: #000000 }
+.faction-steiner { color: #000099 }
+.faction-davion { color: #ffcc00}
+.faction-kurita { color: #cc0000}
+.faction-marik { color: #990099}
+.faction-none { color: #000000}
+.faction-liao { color: #007700}
+.faction-rasalhague { color: #a0a0a0}
+.faction-ghostbear { color: #c0c0c0}
+.faction-jadefalcon { color: #33ff33}
+.faction-wolf { color: #994c00}
+.faction-smokejaguar { color: #ffcc99}

@@ -1,37 +1,7 @@
 /*
+ *= require overrides
  *= require bootstrap-sass
  *= require 'normalize'
  *
  */
 
-body {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.dot {
-  stroke: #000;
-}
-
-.contested {
-  stroke: #F00;
-  stroke-width: 20;
-  stroke-opacity: .5;
-}
-
-.peace {
-  stroke: #000;
-}
-
-.overlay {
-  fill: none;
-  pointer-events: all;
-  stroke: #000;
-  stroke-width: 5;
-}

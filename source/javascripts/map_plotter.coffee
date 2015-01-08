@@ -23,6 +23,23 @@ $ ->
   y = d3.scale.linear().domain([-height / 2, height / 2]).range([height,0])
 
   color = d3.scale.category10()
+
+  inner_sphere_factions = [
+    "Steiner"
+    "Davion"
+    "Kurita"
+    "Marik"
+    "Liao"
+    "Rasalhague"
+  ]
+
+  clan_factions = [
+    "Ghost Bear"
+    "Jade Falcon"
+    "Wolf"
+    "Smoke Jaguar"
+  ]
+
   window.color_mapping =
     "Piranha Games": '#000000'
     "Steiner": '#000099'
@@ -101,9 +118,15 @@ $ ->
         d.position = {}
         d.position.x = old_data[prop].position.x
         d.position.y = old_data[prop].position.y
+
         d.owner_id = old_data[prop].owner.id
         d.owner_name = old_data[prop].owner.name
+
+        d.invader_id = old_data[prop].invading.name
+        d.invader_name = old_data[prop].invading.name
+
         d.name = old_data[prop].name
+
         d.contested = old_data[prop].contested
         d.territories_captured = old_data[prop].territories.filter (t) ->
             t != '0'
@@ -128,6 +151,8 @@ $ ->
 
     window.planets = svg.selectAll(".dot").data(data).enter()
 
+    contested_planets = []
+
     # Planet names
     window.planet_names = svg.selectAll("text").data(data).enter()
       .append("text")
@@ -142,6 +167,9 @@ $ ->
         .text (d) ->
           if d.contested == 1
             name = "[#{d.territories_captured}]" + d.name
+
+            # Hackish way of providing data for the planetary invasion status sidebar
+            contested_planets.push(d)
           else
             name = d.name
           name
@@ -186,3 +214,29 @@ $ ->
     # Default zoom
     zoomListener.translate([-width / 20,  -height / 20]).scale(1);
     zoomListener.event(svg.transition().duration(3000));
+
+
+    window.is_clan_offensive = (d) ->
+      $.inArray(d.owner_name, inner_sphere_factions) > -1  && $.inArray(d.invader_name, clan_factions) > -1
+
+    window.is_house_offensive = (d) ->
+      $.inArray(d.owner_name, clan_factions) > -1 && $.inArray(d.invader_name, inner_sphere_factions) > -1
+
+    window.is_house_vs_house = (d) ->
+      $.inArray(d.owner_name, inner_sphere_factions) > -1 && $.inArray(d.invader_name, inner_sphere_factions) > -1
+
+    $.each contested_planets, (index) ->
+      planet = contested_planets[index]
+
+      if planet.name == 'Ohrensen'
+        window.kek = planet
+
+      if is_clan_offensive(planet)
+        $('#clan_offensive').append("<li>[#{planet.territories_captured}] #{planet.name}</li>")
+
+      else if is_house_offensive(planet)
+        $('#is_offensive').append("<li>[#{planet.territories_captured}] #{planet.name}</li>")
+
+      else if is_house_vs_house(planet)
+        $('#petty_fight').append("<li>[#{planet.territories_captured}] #{planet.name}</li>")
+

@@ -14,8 +14,22 @@
         .col-lg-12
           %h1 Current State of the Inner Sphere (LIVE)
           Zoom / Pan around around the map. Planets with red circles are contested. (Coming soon: Display planetary invasion's completion status)
+      .row-fluid
+        .col-lg-8
           #map-container
             = yield
+        .col-lg-4
+          %h3 Planets to Attack
+
+          %h4 Clan Offensive
+          %ul#clan_offensive
+
+          %h4 Inner Sphere Offensive
+          %ul#is_offensive
+
+          %h4 House vs House
+          %ul#petty_fight
+
     .footer.text-center
       By #{link_to "@keikun17", "https://www.twitter.com/keikun17"}. Say Hello to me in-game @ 'Marthe Pryde'.
       %br

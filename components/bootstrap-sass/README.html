@@ -12,8 +12,8 @@
   <body>
     <div class='container'>
       <div class='row-fluid'>
-        <div class='col-lg-12'>
-          <h1>Current State of the Inner Sphere (LIVE)</h1>
+        <div class='col-lg-8'>
+          <h4>Current State of the Inner Sphere (LIVE)</h4>
           Zoom / Pan around around the map. Planets with red circles are contested. (Coming soon: Display planetary invasion's completion status)
           <div id='map-container'>
             <h1 id="bootstraphttpgetbootstrapcom-build-statushttpssecuretravis-ciorgtwbsbootstrappnghttptravis-ciorgtwbsbootstrap-devdependency-statushttpsdavid-dmorgtwbsbootstrapdev-statuspnghttpsdavid-dmorgtwbsbootstrapinfodevdependencies"><a href="http://getbootstrap.com">Bootstrap</a> <a href="http://travis-ci.org/twbs/bootstrap"><img alt="Build Status" src="https://secure.travis-ci.org/twbs/bootstrap.png" /></a> <a href="https://david-dm.org/twbs/bootstrap#info=devDependencies"><img alt="devDependency Status" src="https://david-dm.org/twbs/bootstrap/dev-status.png" /></a></h1>
@@ -296,6 +296,16 @@
             
             <p>Copyright 2013 Twitter, Inc under <a href="LICENSE">the Apache 2.0 license</a>.</p>
           </div>
+        </div>
+        <div class='col-lg-4'>
+          <h4>Planets to Attack</h4>
+          Number in brackets show invasion progress
+          <h5>Clan Offensive</h5>
+          <ul id='clan_offensive'></ul>
+          <h5>Inner Sphere Offensive</h5>
+          <ul id='is_offensive'></ul>
+          <h5>House vs House</h5>
+          <ul id='petty_fight'></ul>
         </div>
       </div>
     </div>

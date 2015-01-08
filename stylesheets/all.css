@@ -1,3 +1,78 @@
+/* line 1, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+
+/* line 8, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.dot {
+  stroke: #000; }
+
+/* line 12, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.contested {
+  stroke: #F00;
+  stroke-width: 20;
+  stroke-opacity: .5; }
+
+/* line 18, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.peace {
+  stroke: #000; }
+
+/* line 22, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.overlay {
+  fill: none;
+  pointer-events: all;
+  stroke: #000;
+  stroke-width: 5; }
+
+/* line 30, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-piranhagames {
+  color: #000000; }
+
+/* line 31, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-steiner {
+  color: #000099; }
+
+/* line 32, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-davion {
+  color: #ffcc00; }
+
+/* line 33, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-kurita {
+  color: #cc0000; }
+
+/* line 34, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-marik {
+  color: #990099; }
+
+/* line 35, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-none {
+  color: #000000; }
+
+/* line 36, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-liao {
+  color: #007700; }
+
+/* line 37, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-rasalhague {
+  color: #a0a0a0; }
+
+/* line 38, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-ghostbear {
+  color: #c0c0c0; }
+
+/* line 39, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-jadefalcon {
+  color: #33ff33; }
+
+/* line 40, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-wolf {
+  color: #994c00; }
+
+/* line 41, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/overrides.scss */
+.faction-smokejaguar {
+  color: #ffcc99; }
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
 article,
@@ -6728,36 +6803,6 @@ table {
 /*
 
 
+
  *
  */
-/* line 8, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
-body {
-  font: 10px sans-serif; }
-
-/* line 12, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges; }
-
-/* line 19, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
-.dot {
-  stroke: #000; }
-
-/* line 23, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
-.contested {
-  stroke: #F00;
-  stroke-width: 20;
-  stroke-opacity: .5; }
-
-/* line 29, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
-.peace {
-  stroke: #000; }
-
-/* line 33, /Users/Valerian/Projects/mwo-community-warfare/source/stylesheets/all.scss */
-.overlay {
-  fill: none;
-  pointer-events: all;
-  stroke: #000;
-  stroke-width: 5; }

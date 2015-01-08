@@ -2,7 +2,7 @@
   var __hasProp = {}.hasOwnProperty;
 
   $(function() {
-    var color, height, mapRatio, margin, svg, transform, transform_text, width, x, y, zoomed;
+    var clan_factions, color, height, inner_sphere_factions, mapRatio, margin, svg, transform, transform_text, width, x, y, zoomed;
     margin = {
       top: 0,
       left: 0,
@@ -16,6 +16,8 @@
     x = d3.scale.linear().domain([-width / 2, width / 2]).range([0, width]);
     y = d3.scale.linear().domain([-height / 2, height / 2]).range([height, 0]);
     color = d3.scale.category10();
+    inner_sphere_factions = ["Steiner", "Davion", "Kurita", "Marik", "Liao", "Rasalhague"];
+    clan_factions = ["Ghost Bear", "Jade Falcon", "Wolf", "Smoke Jaguar"];
     window.color_mapping = {
       "Piranha Games": '#000000',
       "Steiner": '#000099',
@@ -50,7 +52,7 @@
     svg = d3.select("map").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")").call(zoomListener).append("g");
     svg.append("rect").attr("class", "overlay").attr("width", width).attr("height", height);
     return d3.json("https://static.mwomercs.com/data/cw/mapdata.json", function(error, data) {
-      var contested_planets_enter, d, legend, old_data, prop;
+      var contested_planets, contested_planets_enter, d, legend, old_data, prop;
       delete data.generated;
       for (prop in data) {
         if (!__hasProp.call(data, prop)) continue;
@@ -73,6 +75,8 @@
           d.position.y = old_data[prop].position.y;
           d.owner_id = old_data[prop].owner.id;
           d.owner_name = old_data[prop].owner.name;
+          d.invader_id = old_data[prop].invading.name;
+          d.invader_name = old_data[prop].invading.name;
           d.name = old_data[prop].name;
           d.contested = old_data[prop].contested;
           d.territories_captured = old_data[prop].territories.filter(function(t) {
@@ -88,12 +92,14 @@
         return d.position.y;
       })).nice();
       window.planets = svg.selectAll(".dot").data(data).enter();
+      contested_planets = [];
       window.planet_names = svg.selectAll("text").data(data).enter().append("text").attr("class", 'planetname').attr("font-size", '3px').style("fill", function(d) {
         return color_mapping[d.owner_name];
       }).text(function(d) {
         var name;
         if (d.contested === 1) {
           name = ("[" + d.territories_captured + "]") + d.name;
+          contested_planets.push(d);
         } else {
           name = d.name;
         }
@@ -114,7 +120,31 @@
         return "translate(0," + i * 20 + ")";
       });
       zoomListener.translate([-width / 20, -height / 20]).scale(1);
-      return zoomListener.event(svg.transition().duration(3000));
+      zoomListener.event(svg.transition().duration(3000));
+      window.is_clan_offensive = function(d) {
+        return $.inArray(d.owner_name, inner_sphere_factions) > -1 && $.inArray(d.invader_name, clan_factions) > -1;
+      };
+      window.is_house_offensive = function(d) {
+        return $.inArray(d.owner_name, clan_factions) > -1 && $.inArray(d.invader_name, inner_sphere_factions) > -1;
+      };
+      window.is_house_vs_house = function(d) {
+        return $.inArray(d.owner_name, inner_sphere_factions) > -1 && $.inArray(d.invader_name, inner_sphere_factions) > -1;
+      };
+      return $.each(contested_planets, function(index) {
+        var planet, planet_string;
+        planet = contested_planets[index];
+        if (planet.name === 'Ohrensen') {
+          window.kek = planet;
+        }
+        planet_string = "<li class='faction-" + (planet.owner_name.toLowerCase().replace(/\s/g, '')) + "'>[" + planet.territories_captured + "/8] " + planet.name + " (" + planet.owner_name + " vs " + planet.invader_name + ")</li>";
+        if (is_clan_offensive(planet)) {
+          return $('#clan_offensive').append(planet_string);
+        } else if (is_house_offensive(planet)) {
+          return $('#is_offensive').append(planet_string);
+        } else if (is_house_vs_house(planet)) {
+          return $('#petty_fight').append(planet_string);
+        }
+      });
     });
   });
 

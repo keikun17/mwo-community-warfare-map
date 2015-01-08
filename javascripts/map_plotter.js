@@ -53,6 +53,7 @@
     svg.append("rect").attr("class", "overlay").attr("width", width).attr("height", height);
     return d3.json("https://static.mwomercs.com/data/cw/mapdata.json", function(error, data) {
       var contested_planets, contested_planets_enter, d, legend, old_data, prop;
+      $("#connection-status").text('Done').removeClass('label-danger').addClass("label-success");
       delete data.generated;
       for (prop in data) {
         if (!__hasProp.call(data, prop)) continue;

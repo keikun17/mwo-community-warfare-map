@@ -12,7 +12,10 @@
     .container
       .row-fluid
         .col-lg-8
-          %h4 Current State of the Inner Sphere (LIVE)
+          %h4
+            Current State of the Inner Sphere
+            %span#connection-status.label.label-danger Loading...
+
           Zoom / Pan around around the map. Planets with red circles are contested.
           #map-container
             = yield

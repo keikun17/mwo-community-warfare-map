@@ -92,6 +92,7 @@ $ ->
       .attr("height", height)
 
   d3.json "https://static.mwomercs.com/data/cw/mapdata.json", (error, data) ->
+    $("#connection-status").text('Done').removeClass('label-danger').addClass("label-success")
     delete data.generated;
 
     # Convert string data to int

@@ -226,6 +226,10 @@ $ ->
     window.is_house_vs_house = (d) ->
       $.inArray(d.owner_name, inner_sphere_factions) > -1 && $.inArray(d.invader_name, inner_sphere_factions) > -1
 
+    window.is_clan_vs_clan = (d) ->
+      $.inArray(d.owner_name, clan_factions) > -1 && $.inArray(d.invader_name, clan_factions) > -1
+
+
     $.each contested_planets, (index) ->
       planet = contested_planets[index]
 
@@ -243,3 +247,5 @@ $ ->
       else if is_house_vs_house(planet)
         $('#petty_fight').append(planet_string)
 
+      else if is_clan_vs_clan(planet)
+        $('#honorable_fight').append(planet_string)

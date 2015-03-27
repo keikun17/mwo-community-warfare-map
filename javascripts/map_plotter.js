@@ -131,6 +131,9 @@
       window.is_house_vs_house = function(d) {
         return $.inArray(d.owner_name, inner_sphere_factions) > -1 && $.inArray(d.invader_name, inner_sphere_factions) > -1;
       };
+      window.is_clan_vs_clan = function(d) {
+        return $.inArray(d.owner_name, clan_factions) > -1 && $.inArray(d.invader_name, clan_factions) > -1;
+      };
       return $.each(contested_planets, function(index) {
         var planet, planet_string;
         planet = contested_planets[index];
@@ -144,6 +147,8 @@
           return $('#is_offensive').append(planet_string);
         } else if (is_house_vs_house(planet)) {
           return $('#petty_fight').append(planet_string);
+        } else if (is_clan_vs_clan(planet)) {
+          return $('#honorable_fight').append(planet_string);
         }
       });
     });
